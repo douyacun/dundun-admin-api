@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/douyacun/go-websocket-protobuf-ts/app/cronjob"
 	"os"
 
 	client "github.com/urfave/cli/v2"
@@ -40,6 +41,7 @@ func main() {
 	}
 	app.Commands = []*client.Command{
 		bootstrap.RunServer(),
+		cronjob.Run(),
 	}
 	app.Commands = append(app.Commands, command.Commands...)
 	if err := app.Run(os.Args); err != nil {
