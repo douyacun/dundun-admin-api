@@ -1,16 +1,14 @@
 package main
 
 import (
-	"github.com/douyacun/go-websocket-protobuf-ts/app/cronjob"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/bootstrap"
 	"os"
 
 	client "github.com/urfave/cli/v2"
 
-	"github.com/douyacun/go-websocket-protobuf-ts/app/cli"
-	"github.com/douyacun/go-websocket-protobuf-ts/app/command"
-	"github.com/douyacun/go-websocket-protobuf-ts/app/log"
-	"github.com/douyacun/go-websocket-protobuf-ts/bootstrap"
-	"github.com/douyacun/go-websocket-protobuf-ts/config"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/app/command"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/app/log"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/config"
 )
 
 func main() {
@@ -34,14 +32,14 @@ func main() {
 		// 初始化日志
 		log.Init()
 		// 初始化mysql
-		cli.InitDB()
+		//cli.InitDB()
 		// 初始化redis
-		cli.InitRDB()
+		//cli.InitRDB()
 		return nil
 	}
 	app.Commands = []*client.Command{
 		bootstrap.RunServer(),
-		cronjob.Run(),
+		//cronjob.Run(),
 	}
 	app.Commands = append(app.Commands, command.Commands...)
 	if err := app.Run(os.Args); err != nil {

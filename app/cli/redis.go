@@ -5,8 +5,8 @@ import (
 
 	"github.com/go-redis/redis/v8"
 
-	"github.com/douyacun/go-websocket-protobuf-ts/app/log"
-	"github.com/douyacun/go-websocket-protobuf-ts/config"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/app/log"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/config"
 )
 
 var (

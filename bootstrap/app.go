@@ -1,6 +1,7 @@
 package bootstrap
 
 import (
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/app/middleware"
 	"context"
 	"errors"
 	"net/http"
@@ -13,9 +14,9 @@ import (
 
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 
-	"github.com/douyacun/go-websocket-protobuf-ts/app/log"
-	"github.com/douyacun/go-websocket-protobuf-ts/app/routes"
-	"github.com/douyacun/go-websocket-protobuf-ts/config"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/app/log"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/app/routes"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/config"
 )
 
 func RunServer() *cli.Command {
@@ -36,22 +37,9 @@ func Start() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
-	// Set up OpenTelemetry.
-	otelShutdown, err := setupOTelSDK(ctx)
-	if err != nil {
-		return
-	}
-	// Handle shutdown properly so nothing leaks.
-	defer func() {
-		err = errors.Join(err, otelShutdown(context.Background()))
-	}()
-
 	app := gin.New()
-	// Add a ginzap middleware, which:
-	//   - Logs all requests, like a combined access and error log.
-	//   - Logs to stdout.
-	//   - RFC3339 with UTC time format.
-	//app.Use(ginzap.RecoveryWithZap(log.Logger, true), ginzap.Ginzap(log.Logger, time.RFC3339, true))
+	middleware.NewMonitor(app)
+
 	// 代理设置
 	_ = app.SetTrustedProxies([]string{"127.0.0.1"})
 	app.Use(otelgin.Middleware(config.App.AppName()))

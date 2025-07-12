@@ -16,8 +16,8 @@ import (
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
 
-	"github.com/douyacun/go-websocket-protobuf-ts/app/log"
-	"github.com/douyacun/go-websocket-protobuf-ts/config"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/app/log"
+	"codeup.aliyun.com/6829ea85516a9f85a08cb8c7/ad-services/ad-materials/config"
 )
 
 // @doc https://opentelemetry.io/zh/docs/languages/go/getting-started/ 全链路日志追踪，trace/metrics/log

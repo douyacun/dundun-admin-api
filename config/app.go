@@ -12,14 +12,18 @@ func (a *app) Host() string {
 	return _config.Section("app").Key("host").String()
 }
 
-func (i *app) IsProd() bool {
+func (a *app) IsProd() bool {
 	return _config.Section("app").Key("env").String() == "prod"
 }
 
-func (i *app) IsTest() bool {
+func (a *app) IsTest() bool {
 	return _config.Section("app").Key("env").String() == "dev"
 }
 
-func (i *app) Port() string {
+func (a *app) Port() string {
 	return _config.Section("app").Key("port").String()
+}
+
+func (a *app) RootPath() string {
+	return _config.Section("app").Key("root_path").String()
 }
