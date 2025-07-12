@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-var limiter = rate.NewLimiter(50, 60) // 每秒最多10个请求，最多允许突发20个请求
+var limiter = rate.NewLimiter(200, 250) // 每秒最多200个请求，最多允许突发250个请求
 
 func RateLimitMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {

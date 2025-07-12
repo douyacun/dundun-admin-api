@@ -2,3 +2,4 @@
 go.sum
 materials
 .DS_Store
+build/bin
